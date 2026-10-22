@@ -1,9 +1,255 @@
 <!doctype html>
 <html lang="es">
   <head>
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Prototipo académico de cajero automático Pokémon Bank" />
+    <title>Mi cuenta | Pokémon Bank</title>
+    <link rel="icon" href="images/pokeball.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body data-page="acciones">
-
+    <a class="skip" href="#contenido">Saltar al contenido</a>
+    <div class="layout">
+      <aside class="sidebar">
+        <a class="brand" href="acciones.html">
+          <img src="images/pokeball.svg" alt="" />
+          <span>
+            Pokémon Bank
+            <small>CAJERO AUTOMÁTICO</small>
+          </span>
+        </a>
+        <nav aria-label="Principal" class="nav-links">
+          <a href="acciones.html" class="active" aria-current="page">
+            <span aria-hidden="true">◈</span>
+            Mi cuenta
+          </a>
+          <a href="historial.html">
+            <span aria-hidden="true">↔</span>
+            Movimientos
+          </a>
+          <a href="grafico.html">
+            <span aria-hidden="true">▥</span>
+            Estadísticas
+          </a>
+        </nav>
+        <div class="side-bottom">
+          <div class="side-note">
+            <strong>Operaciones de cuenta</strong>
+            <br />
+            Depósitos, retiros y pagos.
+          </div>
+          <a href="index.html" class="exit" data-logout>↗ Cerrar sesión</a>
+        </div>
+      </aside>
+      <main class="main" id="contenido">
+        <header class="topbar">
+          <span class="status">● Cuenta de demostración</span>
+          <span>
+            <span class="avatar">AK</span>
+            Ash Ketchum ·
+            <a href="index.html" data-logout>Salir</a>
+          </span>
+        </header>
+        <noscript>Vista de diseño de Fase 1. Activá JavaScript para probar la simulación.</noscript>
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow muted">MI CUENTA</p>
+            <h1>Hola, Ash.</h1>
+            <p class="muted">Seleccioná una operación.</p>
+          </div>
+          <span class="pill">Cuenta de ahorro · USD</span>
+        </div>
+        <div class="row">
+          <div class="col-lg-8">
+            <section class="balance" aria-label="Saldo de la cuenta">
+              <div class="circle"></div>
+              <small>SALDO DISPONIBLE</small>
+              <strong class="amount" data-balance>$1,305.00</strong>
+              <span class="account">N.º 0001 2026 0941</span>
+            </section>
+          </div>
+          <div class="col-lg-4">
+            <section class="account-card">
+              <img src="images/pokeball.svg" alt="" />
+              <span class="label">ENTRENADOR TITULAR</span>
+              <h3>Ash Ketchum</h3>
+              <p class="muted" style="font-size: 13px">
+                Cuenta activa
+                <br />
+                Región Kanto
+              </p>
+              <span class="tag">Nivel inicial</span>
+            </section>
+          </div>
+        </div>
+        <div class="section-head"><h2>Operaciones disponibles</h2></div>
+        <div class="operations">
+          <details class="operation">
+            <summary>
+              <span class="icon" aria-hidden="true">↓</span>
+              <strong>Depositar</strong>
+              <small>Ingresá el monto del depósito</small>
+            </summary>
+            <form data-transaction="deposito">
+              <div class="form-group">
+                <label for="monto-deposito">Monto en USD</label>
+                <input
+                  class="form-control"
+                  id="monto-deposito"
+                  name="amount"
+                  type="number"
+                  min="0.01"
+                  max="10000"
+                  step="0.01"
+                  placeholder="0.00"
+                  required
+                />
+              </div>
+              <button class="btn btn-primary" type="submit">Confirmar depositar</button>
+            </form>
+          </details>
+          <details class="operation">
+            <summary>
+              <span class="icon" aria-hidden="true">↑</span>
+              <strong>Retirar</strong>
+              <small>Ingresá el monto del retiro</small>
+            </summary>
+            <form data-transaction="retiro">
+              <div class="form-group">
+                <label for="monto-retiro">Monto en USD</label>
+                <input
+                  class="form-control"
+                  id="monto-retiro"
+                  name="amount"
+                  type="number"
+                  min="0.01"
+                  max="10000"
+                  step="0.01"
+                  placeholder="0.00"
+                  required
+                />
+              </div>
+              <button class="btn btn-primary" type="submit">Confirmar retirar</button>
+            </form>
+          </details>
+          <div class="operation">
+            <span class="icon" aria-hidden="true">◎</span>
+            <strong>Consultar saldo</strong>
+            <small>Revisá cuánto tenés disponible</small>
+            <button class="btn btn-outline-secondary mt-3" id="check-balance" type="button">
+              Ver saldo
+            </button>
+          </div>
+          <details class="operation">
+            <summary>
+              <span class="icon" aria-hidden="true">⌁</span>
+              <strong>Pagar servicios</strong>
+              <small>Elegí el servicio</small>
+            </summary>
+            <form data-transaction="pago">
+              <div class="form-group">
+                <label for="servicio">Servicio</label>
+                <select id="servicio" name="service" class="form-control">
+                  <option>Energía eléctrica</option>
+                  <option>Internet</option>
+                  <option>Telefonía</option>
+                  <option>Agua potable</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="referencia">Referencia del recibo</label>
+                <input
+                  id="referencia"
+                  name="reference"
+                  class="form-control"
+                  pattern="[0-9]{6,12}"
+                  minlength="6"
+                  maxlength="12"
+                  inputmode="numeric"
+                  required
+                  placeholder="De 6 a 12 dígitos"
+                />
+              </div>
+              <div class="form-group">
+                <label for="monto-pago">Monto en USD</label>
+                <input
+                  class="form-control"
+                  id="monto-pago"
+                  name="amount"
+                  type="number"
+                  min="0.01"
+                  max="10000"
+                  step="0.01"
+                  placeholder="0.00"
+                  required
+                />
+              </div>
+              <button class="btn btn-primary" type="submit">Confirmar pagar servicios</button>
+            </form>
+          </details>
+        </div>
+        <div class="notice" id="message" role="status" aria-live="polite"></div>
+        <div class="section-head">
+          <h2>Últimos movimientos</h2>
+          <a href="historial.html">Ver todos →</a>
+        </div>
+        <div class="table-panel table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">MOVIMIENTO</th>
+                <th scope="col">FECHA</th>
+                <th scope="col">MONTO</th>
+                <th scope="col">ESTADO</th>
+              </tr>
+            </thead>
+            <tbody id="transactions">
+              <tr>
+                <td>
+                  Depósito
+                  <small>Abono de prueba</small>
+                </td>
+                <td>17 oct 2026</td>
+                <td class="positive">+$200.00</td>
+                <td><span class="tag">Completado</span></td>
+              </tr>
+              <tr>
+                <td>
+                  Retiro
+                  <small>Retiro de prueba</small>
+                </td>
+                <td>17 oct 2026</td>
+                <td class="negative">−$50.00</td>
+                <td><span class="tag">Completado</span></td>
+              </tr>
+              <tr>
+                <td>
+                  Pago de servicios
+                  <small>Internet</small>
+                </td>
+                <td>17 oct 2026</td>
+                <td class="negative">−$45.00</td>
+                <td><span class="tag">Completado</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted mt-3" style="font-size: 11px">
+          Incluye tres movimientos iniciales ficticios. Los cambios se guardan en este navegador.
+        </p>
+        <footer class="footer">
+          <span>Pokémon Bank · Proyecto académico LIC941 · Datos ficticios</span>
+        </footer>
+      </main>
+    </div>
+    <script src="js/model.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>

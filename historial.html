@@ -1,9 +1,122 @@
 <!doctype html>
 <html lang="es">
   <head>
-    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Prototipo académico de cajero automático Pokémon Bank" />
+    <title>Movimientos | Pokémon Bank</title>
+    <link rel="icon" href="images/pokeball.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body data-page="historial">
-    
+    <a class="skip" href="#contenido">Saltar al contenido</a>
+    <div class="layout">
+      <aside class="sidebar">
+        <a class="brand" href="acciones.html">
+          <img src="images/pokeball.svg" alt="" />
+          <span>
+            Pokémon Bank
+            <small>CAJERO AUTOMÁTICO</small>
+          </span>
+        </a>
+        <nav aria-label="Principal" class="nav-links">
+          <a href="acciones.html">
+            <span aria-hidden="true">◈</span>
+            Mi cuenta
+          </a>
+          <a href="historial.html" class="active" aria-current="page">
+            <span aria-hidden="true">↔</span>
+            Movimientos
+          </a>
+          <a href="grafico.html">
+            <span aria-hidden="true">▥</span>
+            Estadísticas
+          </a>
+        </nav>
+        <div class="side-bottom">
+          <div class="side-note">
+            <strong>Movimientos de cuenta</strong>
+            <br />
+            Depósitos, retiros y pagos.
+          </div>
+          <a href="index.html" class="exit" data-logout>↗ Cerrar sesión</a>
+        </div>
+      </aside>
+      <main class="main" id="contenido">
+        <header class="topbar">
+          <span class="status">● Cuenta de demostración</span>
+          <span>
+            <span class="avatar">AK</span>
+            Ash Ketchum ·
+            <a href="index.html" data-logout>Salir</a>
+          </span>
+        </header>
+        <noscript>Vista de diseño de Fase 1. Activá JavaScript para probar la simulación.</noscript>
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow muted">MOVIMIENTOS</p>
+            <h1>Historial de operaciones.</h1>
+            <p class="muted">Todos tus depósitos, retiros y pagos de esta cuenta.</p>
+          </div>
+          <span class="pill">Cuenta de ahorro · USD</span>
+        </div>
+        <div class="section-head"><h2>Registrados en este navegador</h2></div>
+        <div class="table-panel table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">MOVIMIENTO</th>
+                <th scope="col">FECHA</th>
+                <th scope="col">MONTO</th>
+                <th scope="col">ESTADO</th>
+              </tr>
+            </thead>
+            <tbody id="transactions">
+              <tr>
+                <td>
+                  Depósito
+                  <small>Abono de prueba</small>
+                </td>
+                <td>17 oct 2026</td>
+                <td class="positive">+$200.00</td>
+                <td><span class="tag">Completado</span></td>
+              </tr>
+              <tr>
+                <td>
+                  Retiro
+                  <small>Retiro de prueba</small>
+                </td>
+                <td>17 oct 2026</td>
+                <td class="negative">−$50.00</td>
+                <td><span class="tag">Completado</span></td>
+              </tr>
+              <tr>
+                <td>
+                  Pago de servicios
+                  <small>Internet</small>
+                </td>
+                <td>17 oct 2026</td>
+                <td class="negative">−$45.00</td>
+                <td><span class="tag">Completado</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted mt-3" style="font-size: 11px">
+          Incluye tres movimientos iniciales ficticios. Los nuevos se agregan al final de la tabla.
+        </p>
+        <footer class="footer">
+          <span>Pokémon Bank · Proyecto académico LIC941 · Datos ficticios</span>
+        </footer>
+      </main>
+    </div>
+    <script src="js/model.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>

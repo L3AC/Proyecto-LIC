@@ -54,6 +54,7 @@ function nombreMovimiento(tipo) {
 
 function actualizarSaldo() {
   var celda = document.querySelector("[data-balance]");
+  if (celda === null) return;
   celda.textContent = formatearMonto(obtenerSaldo());
 }
 
@@ -230,5 +231,9 @@ if (pagina === "acciones") {
 if (pagina === "grafico") {
   revisarSesion();
   configurarGrafico();
+}
+if (pagina === "historial") {
+  revisarSesion();
+  dibujarTabla();
 }
 configurarSalida();

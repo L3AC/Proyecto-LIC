@@ -53,15 +53,15 @@
           <span class="status">● Cuenta de demostración</span>
           <span>
             <span class="avatar">AK</span>
-            Ash Ketchum ·
+            <span data-usuario>Ash Ketchum</span> ·
             <a href="index.html" data-logout>Salir</a>
           </span>
         </header>
-        <noscript>Vista de diseño de Fase 1. Activá JavaScript para probar la simulación.</noscript>
+        <noscript>Activá JavaScript para usar el cajero automático.</noscript>
         <div class="page-heading">
           <div>
             <p class="eyebrow muted">MI CUENTA</p>
-            <h1>Hola, Ash.</h1>
+            <h1>Hola, <span data-nombre>Ash</span>.</h1>
             <p class="muted">Seleccioná una operación.</p>
           </div>
           <span class="pill">Cuenta de ahorro · USD</span>
@@ -71,8 +71,8 @@
             <section class="balance" aria-label="Saldo de la cuenta">
               <div class="circle"></div>
               <small>SALDO DISPONIBLE</small>
-              <strong class="amount" data-balance>$1,305.00</strong>
-              <span class="account">N.º 0001 2026 0941</span>
+              <strong class="amount" data-balance></strong>
+              <span class="account" data-cuenta>N.º 0987654321</span>
             </section>
           </div>
           <div class="col-lg-4">
@@ -195,7 +195,6 @@
             </form>
           </details>
         </div>
-        <div class="notice" id="message" role="status" aria-live="polite"></div>
         <div class="section-head">
           <h2>Últimos movimientos</h2>
           <a href="historial.html">Ver todos →</a>
@@ -208,47 +207,35 @@
                 <th scope="col">FECHA</th>
                 <th scope="col">MONTO</th>
                 <th scope="col">ESTADO</th>
+                <th scope="col">COMPROBANTE</th>
               </tr>
             </thead>
-            <tbody id="transactions">
-              <tr>
-                <td>
-                  Depósito
-                  <small>Abono de prueba</small>
-                </td>
-                <td>17 oct 2026</td>
-                <td class="positive">+$200.00</td>
-                <td><span class="tag">Completado</span></td>
-              </tr>
-              <tr>
-                <td>
-                  Retiro
-                  <small>Retiro de prueba</small>
-                </td>
-                <td>17 oct 2026</td>
-                <td class="negative">−$50.00</td>
-                <td><span class="tag">Completado</span></td>
-              </tr>
-              <tr>
-                <td>
-                  Pago de servicios
-                  <small>Internet</small>
-                </td>
-                <td>17 oct 2026</td>
-                <td class="negative">−$45.00</td>
-                <td><span class="tag">Completado</span></td>
-              </tr>
-            </tbody>
+            <tbody id="transactions"></tbody>
           </table>
         </div>
         <p class="muted mt-3" style="font-size: 11px">
-          Incluye tres movimientos iniciales ficticios. Los cambios se guardan en este navegador.
+          Cada movimiento se guarda en este navegador (LocalStorage). Podés descargar su comprobante en PDF.
         </p>
         <footer class="footer">
           <span>Pokémon Bank · Proyecto académico LIC941 · Datos ficticios</span>
         </footer>
       </main>
     </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/sweetalert@2.1.2/dist/sweetalert.min.js"
+      integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/validate.js@0.13.1/validate.min.js"
+      integrity="sha512-jjkKtALXHo5xxDA4I5KJyEtYCAqHyOPuWwYFGWGQR2RgOIEFTQsZSDEC5GCdoAKMa8Yay/C+jMW8LCSZbb6YeA=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"
+      integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA=="
+      crossorigin="anonymous"
+    ></script>
     <script src="js/model.js"></script>
     <script src="js/app.js"></script>
   </body>

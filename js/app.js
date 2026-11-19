@@ -1,6 +1,7 @@
 // Interacción del cajero: sesión, validaciones, diálogos, comprobantes y gráfica
 
 var CLAVE_SESION = "pokemon-bank-sesion";
+var CLAVE_DENEGADO = "pokemon-bank-acceso-denegado";
 
 // ===== Reglas de validación (ValidateJS) =====
 // El símbolo ^ evita que la librería agregue el nombre del campo al mensaje
@@ -79,26 +80,15 @@ function cerrarSesion() {
   sessionStorage.removeItem(CLAVE_SESION);
 }
 
-// Verifica la sesión; si no hay, avisa con el error 403 y regresa al inicio
+// Verifica la sesión; si no hay, marca el aviso y regresa al inicio de sesión
 function revisarSesion() {
   if (sessionStorage.getItem(CLAVE_SESION) !== null) {
     return true;
   }
 
-  // Si la librería no cargó, redirige sin mostrar el diálogo
-  if (typeof swal === "undefined") {
-    window.location.replace("index.html");
-    return false;
-  }
-
-  swal({
-    title: "Error 403: Acceso restringido",
-    text: "No hay una sesión activa. Iniciá sesión para entrar a esta página.",
-    icon: "error",
-    buttons: "Volver al inicio de sesión",
-  }).then(function () {
-    window.location.replace("index.html");
-  });
+  // El aviso de acceso denegado se muestra en el login, no encima de esta página
+  sessionStorage.setItem(CLAVE_DENEGADO, "403");
+  window.location.replace("index.html");
   return false;
 }
 
@@ -117,6 +107,25 @@ function mostrarBienvenida() {
       iniciarSesion();
       window.location.href = "acciones.html";
     }
+  });
+}
+
+// Si se llegó desde una página protegida, muestra el aviso de acceso denegado
+function mostrarAccesoDenegado() {
+  if (sessionStorage.getItem(CLAVE_DENEGADO) === null) {
+    return;
+  }
+  sessionStorage.removeItem(CLAVE_DENEGADO);
+
+  // Si la librería no cargó, el login sigue funcionando sin el aviso
+  if (typeof swal === "undefined") {
+    return;
+  }
+  swal({
+    title: "Error 403: Acceso restringido",
+    text: "No hay una sesión activa. Iniciá sesión para entrar a esa página.",
+    icon: "error",
+    buttons: "Entendido",
   });
 }
 
@@ -409,6 +418,7 @@ if (pagina === "login") {
   if (sessionStorage.getItem(CLAVE_SESION) !== null) {
     window.location.replace("acciones.html");
   } else {
+    mostrarAccesoDenegado();
     configurarLogin();
   }
 }
